@@ -1,0 +1,128 @@
+version: '3.9'
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - network
+
+  users-microservice:
+    container_name: users_microservice
+    build:
+      context: ./users-microservice
+      dockerfile: Dockerfile
+    volumes:
+      - ./users-microservice:/users-microservice
+    ports:
+      - "8080:8080"
+    networks:
+      - network
+    depends_on:
+      - users-db
+
+  devices-microservice:
+    container_name: devices_microservice
+    build:
+      context: ./devices-microservice
+      dockerfile: Dockerfile
+    volumes:
+      - ./devices-microservice:/devices-microservice
+    ports:
+      - "8081:8081"
+    networks:
+      - network
+    depends_on:
+      - devices-db
+
+  monitoring-microservice:
+    container_name: monitoring_microservice
+    build:
+      context: ./monitoring-microservice
+      dockerfile: Dockerfile
+    volumes:
+      - ./monitoring-microservice:/monitoring-microservice
+    ports:
+      - "8082:8082"
+    networks:
+      - network
+    depends_on:
+      - sensors-db
+      - rabbitmq
+
+  chat-microservice:
+    container_name: chat_microservice
+    build:
+      context: ./chat-microservice
+      dockerfile: Dockerfile
+    volumes:
+      - ./chat-microservice:/chat-microservice
+    ports:
+      - "8083:8083"
+    networks:
+      - network
+
+  users-db:
+    container_name: users_db
+    image: postgres:16.0-alpine3.18
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=users
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/users_db
+    networks:
+      - network
+
+  devices-db:
+    container_name: devices_db
+    image: postgres:16.0-alpine3.18
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=devices
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/devices_db
+    networks:
+      - network
+
+  sensors-db:
+    container_name: sensors_db
+    image: postgres:16.0-alpine3.18
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=sensors
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/sensors_db
+    networks:
+      - network
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.12.9-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+volumes:
+  pgdata: {}
+
+networks:
+  network:
+    driver: bridge

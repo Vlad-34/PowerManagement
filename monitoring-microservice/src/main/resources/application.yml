@@ -1,0 +1,28 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/sensors
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  rabbitmq:
+    host: host.docker.internal
+    port: 5672
+    queue:
+      name: device_queue
+    exchange:
+      name: device_exchange
+    routing_key:
+      name: device_routing_key
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

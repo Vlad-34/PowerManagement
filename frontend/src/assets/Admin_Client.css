@@ -1,0 +1,88 @@
+.background {
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}
+.tab {
+    display: flex;
+    width: 100%;
+
+}
+.tablinks {
+    border-radius: 0%;
+}
+
+
+.bottom {
+    background-color: black;
+    position: absolute;
+    display: flex;
+    color: white;
+    top: 9.5%;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}
+
+.formular {
+    background-color: black;
+    color: white;
+    position: relative;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    width: 50%;
+    padding: 10%;
+    padding-top: 5%;
+}
+
+.picture {
+    background-color: #181a1b;
+    position:relative;
+    top:0px;
+    left:0px;
+    width: 50%;
+    bottom: 0px;
+}
+
+.right {
+    background-color: #181a1b;
+    position:relative;
+    top:0px;
+    right:0px;
+    width: 50%;
+    bottom: 0px;
+}
+.labels {
+    display: flex;
+    left:0px;
+    right:0px;
+}
+.submit {
+    width:auto;
+    background-color: darkgray;
+}
+.users {
+    display: flex;
+    width:50%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+.devices {
+    display: flex;
+    width:50%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+.bottom2 {
+    background-color: black;
+    position: absolute;
+    display: flex;
+    color: white;
+    top: 20%;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}

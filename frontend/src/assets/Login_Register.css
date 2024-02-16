@@ -1,0 +1,48 @@
+.back {
+    background-color: black;
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}
+
+img {
+    background-color: #181a1b;
+    position:absolute;
+    top:0px;
+    right:0px;
+    left:50%;
+    height:100%;
+}
+
+.form {
+    background-color: black;
+    color: white;
+    position:absolute;
+    top:0px;
+    right:50%;
+    bottom:0px;
+    left:0px;
+    padding: 10%;
+    padding-top: 5%;
+}
+
+input {
+    background-color: #3b3b3b;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    padding: 1%;
+}
+
+button {
+    color: white;
+    width: 100%;
+}
+
+.button-class {
+    background-color: #3b3b3b;
+}
